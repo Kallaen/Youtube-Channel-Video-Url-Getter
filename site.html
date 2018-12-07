@@ -6,11 +6,11 @@
 
 <body>
     <div class="media-element" style="position: relative; padding-bottom: 56.25%; padding-top: 25px; height: 0px;"><iframe
-            id="frame1" allowfullscreen="" class="media-element-content" frameborder="0" height="360" src="//www.youtube.com/embed/6jekdfpMd4A"
+            id="frame1" allowfullscreen="" class="media-element-content" frameborder="0" height="360" src=""
             style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%;" width="640"></iframe></div>
 
     <div class="media-element" style="position: relative; padding-bottom: 56.25%; padding-top: 25px; height: 0px;"><iframe
-            id="frame1" allowfullscreen="" class="media-element-content" frameborder="0" height="360" src="//www.youtube.com/embed/6jekdfpMd4A"
+            id="frame1" allowfullscreen="" class="media-element-content" frameborder="0" height="360" src=""
             style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%;" width="640"></iframe></div>
 </body>
 
@@ -19,9 +19,13 @@
 
         if (jQuery('#frame1').length && jQuery('#frame2')) {
             url = getVideoUrl(0);
+            console.log("here");
+            console.log(url);
             jQuery('#frame1').attr('src', url);
 
             url1 = getVideoUrl(1);
+            console.log(url);
+
             jQuery('#frame2').attr('src', url1);
 
         }
@@ -32,11 +36,12 @@
                 dataType: "text",
                 url: "http://localhost:5000/videoes/" + index,
                 success: function (data) {
-                    
+                    data = data.replace("/watch?v=", "/v/");
+                    console.log(data);
                     return data;
                 },
                 error: function (xhr, status, error) {
-                    return xhr.status;
+                    return "//www.youtube.com/embed/6jekdfpMd4A";
                 }
             });
         }
