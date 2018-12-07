@@ -23,34 +23,16 @@ def getPlaylistLinks(url):
             arr.append(domain + href)
     return arr
 
-@app.route("/videoes/<int:index>", methods=['GET'])
+@app.route("/videos/<int:index>", methods=['GET'])
 def getVideoByIndex(index):
     videos = getPlaylistLinks(YOUTUBE_CHANNEL_URL)
     return jsonify(videos[int(index)])
 
-@app.route("/videoes", methods=['GET'])
+@app.route("/videos", methods=['GET'])
 def getVideos():
-    limit = request.args.get('limit') # Sets the limit of videoes received
+    limit = request.args.get('limit') # Sets the limit of videos received
     videos = getPlaylistLinks(YOUTUBE_CHANNEL_URL)
     return jsonify(videos[:int(limit)])
 
 if __name__ == "__main__":
     app.run(debug=True)
-
-
-
-# Get youtube id
-#http://youtu.be/5Y6HSHwhVlY
-#http://www.youtube.com/embed/5Y6HSHwhVlY?rel=0
-#http://www.youtube.com/watch?v=ZFqlHhCNBOI
-
-# regex = re.compile(r'(https?://)?(www\.)?(youtube|youtu|youtube-nocookie)\.(com|be)/(watch\?v=|embed/|v/|.+\?v=)?(?P<id>[A-Za-z0-9\-=_]{11})')
-
-# match = regex.match(self.youtube_url)
-
-# if not match:
-#     print('no match')
-# print(match.group('id'))
-
-    # match = regex.match("http://www.youtube.com/watch?v=ZFqlHhCNBOI")
-    # print(match.group('id'))

@@ -1,2 +1,2 @@
 # Youtube Channel Video Url Getter
-A basic python script for getting a video defined by index, where 0 is the newest video, from a Youtube channel
+A basic python flask script for getting a video/videos from a youtube channel and embedding them into an iframe.

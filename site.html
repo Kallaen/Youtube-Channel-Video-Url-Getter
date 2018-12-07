@@ -34,7 +34,7 @@
         //     jQuery.ajax({
         //         type: "GET",
         //         dataType: "text",
-        //         url: "http://localhost:5000/videoes/" + index,
+        //         url: "http://localhost:5000/videos/" + index,
         //         success: function (data) {
         //             data = data.replace("/watch?v=", "/v/");
         //             console.log(data);
@@ -49,12 +49,12 @@
         jQuery.ajax({
             type: "GET",
             dataType: "text",
-            url: "http://localhost:5000/videoes?limit=2",
+            url: "http://localhost:5000/videos?limit=2",
             success: function (data) {
                 arr = JSON.parse(data);
                 console.log(arr[1]);
-                jQuery('#frame1').attr('src', arr[0].replace("watch?v=", "embed/"));
-                jQuery('#frame2').attr('src', arr[1].replace("watch?v=", "embed/"));
+                jQuery('#frame1').attr('src', arr[0].replace("watch?v=", "embed/")); // Watch changed to embed for CORS
+                jQuery('#frame2').attr('src', arr[1].replace("watch?v=", "embed/")); // Watch changed to embed for CORS
             },
             error: function (xhr, status, error) {
                 return "//www.youtube.com/embed/6jekdfpMd4A";
