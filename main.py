@@ -6,7 +6,7 @@ import requests
 
 from bs4 import BeautifulSoup
 import requests
-from flask import Flask, request
+from flask import Flask, request, jsonify
 from flask_cors import CORS #CORS enabled for local use
 app = Flask(__name__)
 CORS(app) #CORS enabled for local use
@@ -26,13 +26,13 @@ def getPlaylistLinks(url):
 @app.route("/videoes/<int:index>", methods=['GET'])
 def getVideoByIndex(index):
     videos = getPlaylistLinks(YOUTUBE_CHANNEL_URL)
-    return str(videos[int(index)])
+    return jsonify(videos[int(index)])
 
 @app.route("/videoes", methods=['GET'])
-def getVideos(index):
+def getVideos():
     limit = request.args.get('limit') # Sets the limit of videoes received
     videos = getPlaylistLinks(YOUTUBE_CHANNEL_URL)
-    return str(videos[:int(index)])
+    return jsonify(videos[:int(limit)])
 
 if __name__ == "__main__":
     app.run(debug=True)
